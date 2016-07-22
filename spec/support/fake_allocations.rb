@@ -22,12 +22,11 @@ class FakeAllocations
     @people += people
   end
 
-  def add_projects(location:, projects:)
-    raise ArgumentError.new("projects should be an array") unless projects.is_a?(Array)
-    raise ArgumentError.new("location should") unless projects.is_a?(Array)
-    @projects += projects
-    @locations.push(location)
-    @project_ids_by_location_id[location.id] = projects.map(&:id)
+  def add_project(location:, project:)
+    @projects += [project]
+    @locations.push(location) unless @locations.include?(location)
+    @project_ids_by_location_id[location.id] ||= []
+    @project_ids_by_location_id[location.id] += [project.id]
   end
 
   def all_projects(params)

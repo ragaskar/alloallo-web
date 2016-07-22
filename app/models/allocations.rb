@@ -12,7 +12,7 @@ class Allocations
 
     location_ids.each do |location_id|
       location = locations.first { |l| l.id == location_id }
-      projects = @projects_repo.projects(location_ids: [location_id], start_on: start_on, end_on: end_on)
+      projects = @projects_repo.projects(locations: [location], start_on: start_on, end_on: end_on)
       projects.each do |project|
         project_week_allocations = @project_allocations_repo.project_allocations(project: project, start_on: start_on, end_on: end_on)
         project_week_allocations.each do |project_week|

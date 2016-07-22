@@ -10,16 +10,10 @@ describe FakeAllocations do
       object_mother = ObjectMother.new
       @pacifica = object_mother.location(name: "Pacifica")
       @pacifica_project = object_mother.project(name: "Kooks Everywhere")
-      fake_allocations.add_projects(
-        location: @pacifica,
-        projects: [@pacifica_project]
-      )
+      fake_allocations.add_project(location: @pacifica, project: @pacifica_project)
       @jetty = object_mother.location(name: "Jetty")
       @jetty_project = object_mother.project(name: "Dead Whale")
-      fake_allocations.add_projects(
-        location: @jetty,
-        projects: [@jetty_project]
-      )
+      fake_allocations.add_project(location: @jetty, project: @jetty_project)
 
       @fake_client = fake_allocations.client
     end
