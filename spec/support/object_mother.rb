@@ -5,7 +5,6 @@ class ObjectMother
     @project_id = 0;
     @location_id = 0;
     @person_id = 0;
-    @allocation_id = 0;
   end
 
   def project(attrs = {})
@@ -38,6 +37,6 @@ class ObjectMother
     timeframe = attrs.fetch(:timeframe, timeframe)
     project = attrs.fetch(:project, project)
     location = attrs.fetch(:location, location)
-    Allocation.new(id: (@allocation_id+=1), person: person, timeframe: timeframe, project: project, location: location)
+    Allocation.new(person: person, timeframe: timeframe, project: project, location: location)
   end
 end

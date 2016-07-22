@@ -5,7 +5,7 @@ class HomeController < ApplicationController
     allocations = Allocations.new(token:ENV["ALLOCATIONS_API_TOKEN"], url: ENV["ALLOCATIONS_API_URL"])
     today = Date.today
     filters = {
-      location_ids: params["location_ids"],
+      location_ids: params["location_ids"].presence || [],
       start_on: today.beginning_of_week,
       end_on: today.end_of_week
     }

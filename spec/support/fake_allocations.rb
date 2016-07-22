@@ -18,6 +18,10 @@ class FakeAllocations
     @locations += locations
   end
 
+  def add_people(people)
+    @people += people
+  end
+
   def add_projects(location:, projects:)
     raise ArgumentError.new("projects should be an array") unless projects.is_a?(Array)
     raise ArgumentError.new("location should") unless projects.is_a?(Array)
@@ -41,6 +45,10 @@ class FakeAllocations
 
   def project(id)
     @projects.detect { |p| p.id == id }
+  end
+
+  def person(id)
+    @people.detect { |p| p.id == id }
   end
 
   def client
