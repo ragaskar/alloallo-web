@@ -27,14 +27,17 @@ class ObjectMother
   end
 
   def person(attrs = {})
+    raise ArgumentError.new("Please let your mother pick the ID (don't pass id:)") if attrs[:id]
     name = attrs.fetch(:name, FFaker::Name.name)
     Person.new(id: (@person_id+=1), name: name)
   end
 
   def allocation(attrs = {})
+    raise ArgumentError.new("Please let your mother pick the ID (don't pass id:)") if attrs[:id]
     person = attrs.fetch(:person, person)
     timeframe = attrs.fetch(:timeframe, timeframe)
     project = attrs.fetch(:project, project)
-    Allocation.new(id: (@allocation_id+=1), person: person, timeframe: timeframe, project: project)
+    location = attrs.fetch(:location, location)
+    Allocation.new(id: (@allocation_id+=1), person: person, timeframe: timeframe, project: project, location: location)
   end
 end

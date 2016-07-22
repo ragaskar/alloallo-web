@@ -1,7 +1,8 @@
 class Allocation
-  def initialize(id:, timeframe:, project:, person:)
+  def initialize(id:, timeframe:, project:, person:, location:)
     @id = id
     @project = project
+    @location = location
     @person = person
     @timeframe = timeframe
   end

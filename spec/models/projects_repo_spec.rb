@@ -28,7 +28,7 @@ RSpec.describe ProjectsRepo, :type => :model do
 
     projects_repo = ProjectsRepo.new(client: fake_allocations.client)
     locations = [pacifica, jetty]
-    result = projects_repo.projects_for(locations: locations)
+    result = projects_repo.projects(locations: locations)
     expect(result).to match_array([jetty_project_1, jetty_project_2, pacifica_project])
   end
 end

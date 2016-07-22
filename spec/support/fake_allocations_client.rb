@@ -20,10 +20,15 @@ class FakeAllocationsClient
     @fake_allocations.project(id)
   end
 
+  def locations(arguments, params = {})
+    @fake_allocations.all_locations
+  end
+
   def endpoint_map(endpoint)
     map = {
       "/api/projects$" => "all_projects",
-      "/api/projects/(\\d+)$" => "project"
+      "/api/projects/(\\d+)$" => "project",
+      "/api/locations$" => "locations"
     }
     map.keys.each do |key|
       match_data = endpoint.match(key)

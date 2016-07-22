@@ -14,6 +14,10 @@ class FakeAllocations
     @project_allocations[allocation.project.id] = allocation
   end
 
+  def add_locations(locations)
+    @locations += locations
+  end
+
   def add_projects(location:, projects:)
     raise ArgumentError.new("projects should be an array") unless projects.is_a?(Array)
     raise ArgumentError.new("location should") unless projects.is_a?(Array)
@@ -29,6 +33,10 @@ class FakeAllocations
       filtered_projects = @projects.select { |p| project_ids_filtered_by_location.include?(p.id) }
     end
     filtered_projects
+  end
+
+  def all_locations
+    @locations
   end
 
   def project(id)

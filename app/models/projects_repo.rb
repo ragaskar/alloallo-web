@@ -3,7 +3,7 @@ class ProjectsRepo
     @client = client
   end
 
-  def projects_for(locations:)
+  def projects(locations:)
     project_data = @client.get("/api/projects", location_ids: locations.map(&:id))
     project_data.map do |project|
       Project.new(project.symbolize_keys)

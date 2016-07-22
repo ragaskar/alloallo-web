@@ -6,6 +6,9 @@ RSpec.describe "Home page", :type => :request do
   before do
     ENV["BASIC_AUTH_USERNAME"] = "GOOD"
     ENV["BASIC_AUTH_PASSWORD"] = "CREDS"
+    ENV["ALLOCATIONS_API_URL"] = "https://example.com"
+    ENV["ALLOCATIONS_API_TOKEN"] = "token"
+
     allocations = FakeAllocations.new
     object_mother = ObjectMother.new
     august_1 = Date.parse("August 1, 2016")
@@ -16,6 +19,10 @@ RSpec.describe "Home page", :type => :request do
     lemoore = object_mother.location(name: "Lemoore")
     new_cf_hire = object_mother.allocation(person: kelly_slater, project: wave_pool, location: lemoore, timeframe: starting_this_week)
     allocations.add_allocation(new_cf_hire)
+    allow(AllocationsClient).to receive(:new).with(
+      url: "https://example.com",
+      token: "token"
+    ).and_return(allocations.client)
   end
 
   describe "Authentication" do
